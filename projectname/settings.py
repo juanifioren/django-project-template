@@ -3,12 +3,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# --------------------------------------------------------------------------- #
-
-
 ADMINS = [
-    #('Your Name', 'yourname@example.org'),
+    ('John Doe', 'john@doe.org'),
 ]
 
 INSTALLED_APPS = [
@@ -50,13 +46,28 @@ TEMPLATES = [
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'simple': {
+            'format': '[%(levelname)s] %(asctime)s %(message)s',
+            'datefmt': '%H:%M',
+        },
+    },
     'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
-        }
+        },
     },
     'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
@@ -64,10 +75,19 @@ LOGGING = {
         },
     },
     'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': False,
+        },
+        'web': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     },
 }
@@ -76,20 +96,12 @@ WSGI_APPLICATION = 'wsgi.application'
 
 ROOT_URLCONF = 'projectname.urls'
 
-
-# Email Server -------------------------------------------------------------- #
-
-
 EMAIL_USE_TLS = True
 
 EMAIL_SUBJECT_PREFIX = 'Django Project Template - '
 
 SERVER_EMAIL = 'noreply@example.org'
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
-
-
-# Internationalization & Localization --------------------------------------- #
-
 
 LANGUAGE_CODE = 'en-us'
 
@@ -100,10 +112,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Statics & Media ----------------------------------------------------------- #
-
 
 STATIC_URL = '/static/'
 
@@ -116,9 +124,6 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'web/media')
-
-
-# --------------------------------------------------------------------------- #
 
 
 try:

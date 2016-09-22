@@ -1,6 +1,6 @@
 # Django Project Template
 
-The clean, fast and right way to start a new Django powered website.
+The clean, fast and right way to start a new Django `1.10.1` powered website.
 
 ## Getting Started
 

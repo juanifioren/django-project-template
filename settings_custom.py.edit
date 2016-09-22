@@ -28,6 +28,9 @@ CACHES = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
+STATIC_ROOT = '/tmp/{{ project_name }}_static'
+MEDIA_ROOT = '/tmp/{{ project_name }}_media'
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'your-account@gmail.com'

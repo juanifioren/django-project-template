@@ -8,5 +8,4 @@ __pycache__/
 *.pid
 *.sock
 *.socket
-#static/
 settings_custom.py

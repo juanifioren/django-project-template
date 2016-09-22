@@ -4,7 +4,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ADMINS = [
-    ('John Doe', 'john@doe.org'),
+    #('John Doe', 'john@doe.org'),
 ]
 
 INSTALLED_APPS = [
@@ -14,7 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'projectname',
+    '{{ project_name }}',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -84,7 +84,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'web': {
+        '{{ project_name }}': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
@@ -94,11 +94,11 @@ LOGGING = {
 
 WSGI_APPLICATION = 'wsgi.application'
 
-ROOT_URLCONF = 'projectname.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
 EMAIL_USE_TLS = True
 
-EMAIL_SUBJECT_PREFIX = 'Django Project Template - '
+EMAIL_SUBJECT_PREFIX = '{{ project_name }} - '
 
 SERVER_EMAIL = 'noreply@example.org'
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
